@@ -12,7 +12,7 @@ st.sidebar.markdown('Note: select one file only')
 # Ask to upload file
 uploaded_files = st.sidebar.file_uploader('Choose a CSV file', accept_multiple_files=True, type=['csv'])
 
-delimit=st.sidebar.text_input('Delimiter in csv file:', ',')
+delimit=st.sidebar.text_input('Delimiter in csv file:', ';')
 
 for i in uploaded_files:
      table=pd.read_csv(i,delimiter=delimit)
