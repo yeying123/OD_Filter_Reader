@@ -41,11 +41,11 @@ ID_list=ID.split(",")
 summary=0
 
 for t in ID_list:
-     t=int(t)
+     number=int(t)
      #st.write(t)
-     df=table.loc[table[from_]==t]
+     df=table.loc[table[from_]==number]
      total=df['count'].sum()
-     st.write("Total travel from ", from_, " ", t , "is: ", total)
+     st.write("Total travel from ", from_, " ", number , "is: ", total)
      summary+=total
 
 st.write("Sum: ",summary)
