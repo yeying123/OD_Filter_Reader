@@ -3,10 +3,6 @@ from collections import namedtuple
 import math
 import pandas as pd
 import streamlit as st
-import pydeck as pdk
-import geopandas as gpd
-import itertools
-import base64
 
 st.set_page_config(layout="wide")
 st.sidebar.header('Upload the OD data here')
