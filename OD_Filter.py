@@ -4,6 +4,7 @@ import math
 import pandas as pd
 import streamlit as st
 import base64
+import streamlit.components.v1 as components
 
 st.set_page_config(
      page_title="OD Selection from Remix",
@@ -37,10 +38,15 @@ else:
      to_='destination'
      ID_start=title.find("od=origin")+10
      ID=title[ID_start:]
-     st.write('The ID(s): ',ID )
+     st.write('The ID(s): ',ID)
+
+st.write("###")
+#components.html("""<hr style="height:2px;border:none;color:#444;background-color:#444;" /> """)
 
 # create empty dataframe (table)
 table=pd.DataFrame()
+
+col1, col2= st.beta_columns((0.8, 0.8))
 
 # Generate the aggregated table
 ID_list=ID.split(",")
@@ -63,5 +69,21 @@ if uploaded_files != []:
                href = f'<a href="data:file/csv;base64,{b64}">Download table as csv file</a>'
                return href
      
-     st.dataframe(table,600, 600)
-     st.markdown(get_table_download_link(table), unsafe_allow_html=True)
+     with col1:
+          st.dataframe(table,800, 600)
+          st.markdown(get_table_download_link(table), unsafe_allow_html=True)
+
+
+     with col2:
+          summary=0
+          for t in ID_list:
+               if int(t) in table[from_].values:
+                    number=int(t)
+                    #st.write(t)
+                    df=table.loc[table[from_]==number]
+                    total=df['count'].sum()
+                    st.write("Total travel from ", from_, " ", number , "is: ", total)
+                    summary+=total
+               else:
+                    st.write("Total travel from ", from_, " ", number, "is: ", 'No matching record')
+          st.write("Sum: ",summary)
