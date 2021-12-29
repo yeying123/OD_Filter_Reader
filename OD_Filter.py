@@ -12,11 +12,9 @@ st.sidebar.markdown('Note: select one file only')
 # Ask to upload file
 uploaded_files = st.sidebar.file_uploader('Choose a CSV file', accept_multiple_files=True, type=['csv'])
 
-delimit=st.sidebar.text_input('Delimiter in csv file:', ';')
+df=pd.DataFrame()
 
-for i in uploaded_files:
-     table=pd.read_csv(i,delimiter=delimit)
-     #st.write(table.head(5))
+delimit=st.sidebar.text_input('Delimiter in csv file:', ';')
 
 # Input field to ask for Remix link to extract IDs
 title = st.text_input('Remix Link', 'Copy URL here')
@@ -33,19 +31,24 @@ else:
      ID=title[ID_start:]
      st.write('The ID(s): ',ID )
 
-ID_list=ID.split(",")
+if uploaded_files != []:
+     for i in uploaded_files:
+          df=pd.read_csv(i,delimiter=delimit)
+          table=df
+          #st.write(table.head(5))
 
-#st.write(table)
-#st.write(table.loc[table['origin']==4135506582950])
+     ID_list=ID.split(",")
 
-summary=0
+     summary=0
+     for t in ID_list:
+          if int(t) in table[from_].values:
+               number=int(t)
+               #st.write(t)
+               df=table.loc[table[from_]==number]
+               total=df['count'].sum()
+               st.write("Total travel from ", from_, " ", number , "is: ", total)
+               summary+=total
+          else:
+               st.write("Total travel from ", from_, " ", number, "is: ", 'No matched record')
 
-for t in ID_list:
-     number=int(t)
-     #st.write(t)
-     df=table.loc[table[from_]==number]
-     total=df['count'].sum()
-     st.write("Total travel from ", from_, " ", number , "is: ", total)
-     summary+=total
-
-st.write("Sum: ",summary)
+     st.write("Sum: ",summary)
