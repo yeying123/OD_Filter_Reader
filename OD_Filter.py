@@ -46,7 +46,7 @@ st.write("###")
 # create empty dataframe (table)
 table=pd.DataFrame()
 
-col1, col2= st.beta_columns((0.8, 0.8))
+col1, col2= st.columns((0.8, 0.8))
 
 # Generate the aggregated table
 ID_list=ID.split(",")
