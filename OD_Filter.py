@@ -73,7 +73,7 @@ if uploaded_files != []:
      
      with col1:
           st.header('OD Selection Table')
-          st.dataframe(table,500, 700)
+          st.dataframe(table,450, 600)
           st.markdown(get_table_download_link(table), unsafe_allow_html=True)
 
 
