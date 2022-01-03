@@ -24,7 +24,7 @@ uploaded_files = st.sidebar.file_uploader('Choose a CSV file', accept_multiple_f
 
 # Ask to specify delimiter
 st.sidebar.header('Step 3: Specify delimiter')
-delimit=st.sidebar.text_input('Delimiter in csv file:', ';')
+delimit=st.sidebar.text_input('After uploading the csv file, please specify the Delimiter in the csv file:', ';')
 
 # Read IDs in the link
 if title.find("od=destination")>0:
@@ -32,13 +32,13 @@ if title.find("od=destination")>0:
      to_='origin'
      ID_start=title.find("od=destination")+15
      ID=title[ID_start:]
-     st.write('The ID(s): ',ID )
+     st.write('The ID(s) extracted from the Remix URL: ',ID )
 else:
      from_='origin'
      to_='destination'
      ID_start=title.find("od=origin")+10
      ID=title[ID_start:]
-     st.write('The ID(s): ',ID)
+     st.write('The ID(s)extracted from the Remix URL: ',ID)
 
 st.write("###")
 #components.html("""<hr style="height:2px;border:none;color:#444;background-color:#444;" /> """)
