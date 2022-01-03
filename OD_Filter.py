@@ -13,17 +13,17 @@ st.set_page_config(
 st.sidebar.title('OD Selection from Remix')
 
 # Input field to ask for Remix link to extract IDs
-st.sidebar.header('Step 1: Add Remix Link')
+st.sidebar.header('Step 1: Add Remix OD Layer Link ')
 title = st.sidebar.text_input('Remix Link:', 'Copy URL')
 
 # Ask to upload file
 st.sidebar.header('Step 2: Upload the OD data here')
 st.sidebar.markdown('Make sure the csv file with these columns: "origin", "destination", and "count"')
-st.sidebar.markdown('Note: select one file only')
-uploaded_files = st.sidebar.file_uploader('Choose a CSV file', accept_multiple_files=True, type=['csv'])
+st.sidebar.markdown('Note: upload one file only')
+uploaded_files = st.sidebar.file_uploader('Choose a CSV file', accept_multiple_files=False, type=['csv'])
 
 # Ask to specify delimiter
-st.sidebar.header('Step 3: Specify delimiter')
+st.sidebar.header('Step 3: Specify csv file delimiter')
 delimit=st.sidebar.text_input('After uploading the csv file, please specify the Delimiter in the csv file:', ';')
 
 # Read IDs in the link
