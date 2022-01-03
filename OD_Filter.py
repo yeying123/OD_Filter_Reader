@@ -51,8 +51,6 @@ col1, col2= st.columns((0.8, 0.8))
 # Generate the aggregated table
 ID_list=ID.split(",")
 if uploaded_files != []:
-     st.title('Selected IDs')
-     st.write('The ID(s) extracted from the Remix URL: ',ID )
      for i in uploaded_files:
           df=pd.read_csv(i,delimiter=delimit)
           for t in ID_list:
@@ -72,6 +70,8 @@ if uploaded_files != []:
                return href
      
      with col1:
+          st.header('Selected IDs')
+          st.write('The ID(s) extracted from the Remix URL: ',ID )
           st.header('OD Selection Table')
           st.dataframe(table,800, 600)
           st.markdown(get_table_download_link(table), unsafe_allow_html=True)
