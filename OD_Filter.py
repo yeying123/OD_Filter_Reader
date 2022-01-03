@@ -32,13 +32,13 @@ if title.find("od=destination")>0:
      to_='origin'
      ID_start=title.find("od=destination")+15
      ID=title[ID_start:]
-     st.write('The ID(s) extracted from the Remix URL: ',ID )
+     #st.write('The ID(s) extracted from the Remix URL: ',ID )
 else:
      from_='origin'
      to_='destination'
      ID_start=title.find("od=origin")+10
      ID=title[ID_start:]
-     st.write('The ID(s)extracted from the Remix URL: ',ID)
+     #st.write('The ID(s)extracted from the Remix URL: ',ID)
 
 st.write("###")
 #components.html("""<hr style="height:2px;border:none;color:#444;background-color:#444;" /> """)
@@ -51,6 +51,8 @@ col1, col2= st.columns((0.8, 0.8))
 # Generate the aggregated table
 ID_list=ID.split(",")
 if uploaded_files != []:
+     st.header('Selected IDs')
+     st.write('The ID(s) extracted from the Remix URL: ',ID )
      for i in uploaded_files:
           df=pd.read_csv(i,delimiter=delimit)
           for t in ID_list:
