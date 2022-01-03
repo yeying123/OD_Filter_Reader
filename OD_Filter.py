@@ -54,7 +54,7 @@ col1, col2= st.columns((0.8, 0.8))
 # Generate the aggregated table
 ID_list=ID.split(",")
 if uploaded_files != []:
-     if title='Copy URL':
+     if title=='Copy URL':
           st.write('URL missing')
      else:
           for i in uploaded_files:
