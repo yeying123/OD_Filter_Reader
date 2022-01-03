@@ -17,7 +17,7 @@ st.sidebar.header('Step 1: Add Remix OD Layer Link ')
 title = st.sidebar.text_input('Remix Link:', 'Copy URL')
 
 # Ask to upload file
-st.sidebar.header('Step 2: Upload the OD data here')
+st.sidebar.header('Step 2: Upload the OD data file (with all OD pairs)')
 st.sidebar.markdown('Make sure the csv file with these columns: "origin", "destination", and "count"')
 st.sidebar.markdown('Note: upload one file only')
 uploaded_files = st.sidebar.file_uploader('Choose a CSV file', accept_multiple_files=True, type=['csv'])
@@ -70,11 +70,13 @@ if uploaded_files != []:
                return href
      
      with col1:
+          st.header('OD Selection Table')
           st.dataframe(table,800, 600)
           st.markdown(get_table_download_link(table), unsafe_allow_html=True)
 
 
      with col2:
+          st.header('OD Pair Summary')
           summary=0
           for t in ID_list:
                if int(t) in table[from_].values:
