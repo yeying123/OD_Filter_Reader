@@ -20,7 +20,7 @@ title = st.sidebar.text_input('Remix Link:', 'Copy URL')
 st.sidebar.header('Step 2: Upload the OD data here')
 st.sidebar.markdown('Make sure the csv file with these columns: "origin", "destination", and "count"')
 st.sidebar.markdown('Note: upload one file only')
-uploaded_files = st.sidebar.file_uploader('Choose a CSV file', accept_multiple_files=False, type=['csv'])
+uploaded_files = st.sidebar.file_uploader('Choose a CSV file', accept_multiple_files=True, type=['csv'])
 
 # Ask to specify delimiter
 st.sidebar.header('Step 3: Specify csv file delimiter')
