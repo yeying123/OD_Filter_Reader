@@ -52,7 +52,7 @@ col1, col2= st.columns((0.8, 0.8))
 ID_list=ID.split(",")
 if uploaded_files != []:
      st.title('Selected IDs')
-     st.markdown('The ID(s) extracted from the Remix URL: ',ID )
+     st.write('The ID(s) extracted from the Remix URL: ',ID )
      for i in uploaded_files:
           df=pd.read_csv(i,delimiter=delimit)
           for t in ID_list:
