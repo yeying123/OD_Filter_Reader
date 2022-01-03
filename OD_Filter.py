@@ -52,11 +52,11 @@ table=pd.DataFrame()
 col1, col2= st.columns((0.8, 0.8))
 
 # Generate the aggregated table
-ID_list=ID.split(",")
 if uploaded_files != []:
      if title=='Copy URL':
           st.write('URL missing')
      else:
+          ID_list=ID.split(",")
           for i in uploaded_files:
                df=pd.read_csv(i,delimiter=delimit)
                for t in ID_list:
