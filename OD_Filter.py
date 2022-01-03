@@ -32,13 +32,15 @@ if title.find("od=destination")>0:
      to_='origin'
      ID_start=title.find("od=destination")+15
      ID=title[ID_start:]
-     #st.write('The ID(s) extracted from the Remix URL: ',ID )
+     st.header('Selected IDs')
+     st.write('The ID(s) extracted from the Remix URL: ',ID )
 else:
      from_='origin'
      to_='destination'
      ID_start=title.find("od=origin")+10
      ID=title[ID_start:]
-     #st.write('The ID(s)extracted from the Remix URL: ',ID)
+     st.header('Selected IDs')
+     st.write('The ID(s)extracted from the Remix URL: ',ID)
 
 st.write("###")
 #components.html("""<hr style="height:2px;border:none;color:#444;background-color:#444;" /> """)
@@ -70,8 +72,6 @@ if uploaded_files != []:
                return href
      
      with col1:
-          st.header('Selected IDs')
-          st.write('The ID(s) extracted from the Remix URL: ',ID )
           st.header('OD Selection Table')
           st.dataframe(table,800, 600)
           st.markdown(get_table_download_link(table), unsafe_allow_html=True)
