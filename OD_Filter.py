@@ -13,8 +13,9 @@ st.set_page_config(
 st.sidebar.title('OD Selection from Remix')
 
 # Input field to ask for Remix link to extract IDs
-st.sidebar.header('Step 1: Add Remix OD Layer Link ')
-title = st.sidebar.text_input('Remix Link:', 'Copy URL')
+st.sidebar.header('Step 1: Add Remix OD Layer Links ')
+title1 = st.sidebar.text_input('Remix Link:', 'Add URL here')
+title2 = st.sidebar.text_input('Remix Link:', 'Add URL here')
 
 # Ask to upload file
 st.sidebar.header('Step 2: Upload the OD data file (with all OD pairs)')
@@ -27,19 +28,19 @@ st.sidebar.header('Step 3: Specify csv file delimiter')
 delimit=st.sidebar.text_input('After uploading the csv file, please specify the Delimiter in the csv file:', ';')
 
 # Read IDs in the link
-if title != 'Copy URL':
-     if title.find("od=destination")>0:
+if title1 != 'Copy URL':
+     if title1.find("od=destination")>0:
           from_='destination'
           to_='origin'
-          ID_start=title.find("od=destination")+15
-          ID=title[ID_start:]
+          ID_start=title1.find("od=destination")+15
+          ID=title1[ID_start:]
           st.header('Selected IDs')
           st.write('The ID(s) extracted from the Remix URL: ',ID )
      else:
           from_='origin'
           to_='destination'
-          ID_start=title.find("od=origin")+10
-          ID=title[ID_start:]
+          ID_start=title1.find("od=origin")+10
+          ID=title1[ID_start:]
           st.header('Selected IDs')
           st.write('The ID(s)extracted from the Remix URL: ',ID)
 
@@ -53,7 +54,7 @@ col1, col2= st.columns((0.8, 0.8))
 
 # Generate the aggregated table
 if uploaded_files != []:
-     if title=='Copy URL':
+     if title1=='Copy URL':
           st.write('URL missing')
      else:
           ID_list=ID.split(",")
