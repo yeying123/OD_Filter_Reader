@@ -12,22 +12,24 @@ st.set_page_config(
      initial_sidebar_state="expanded")
 st.sidebar.title('OD Selection from Remix')
 
-# Input field to ask for Remix link to extract IDs
-st.sidebar.subheader('Step 1: Add Remix OD Layer Link ')
-title1 = st.sidebar.text_input('Remix Link:', 'Copy URL')
-
-st.sidebar.subheader('Step 1.1(Optional): Add Another Remix OD Layer Link ')
-title2 = st.sidebar.text_input('Remix 2nd Link:', 'Copy URL')
 
 # Ask to upload file
-st.sidebar.subheader('Step 2: Upload the OD data file (with all OD pairs)')
+st.sidebar.subheader('Step 1: Upload the OD data file (with all OD pairs)')
 st.sidebar.caption('Make sure the csv file with these columns: "origin", "destination", and "count"(all lowercase)')
 st.sidebar.caption('Note: one file only')
 uploaded_files = st.sidebar.file_uploader('Upload a CSV file', accept_multiple_files=True, type=['csv'])
 
 # Ask to specify delimiter
-st.sidebar.subheader('Step 3: Specify csv file delimiter')
+st.sidebar.subheader('Step 2: Specify csv file delimiter')
 delimit=st.sidebar.text_input('Specify the Delimiter used in the csv file:', ';')
+
+# Input field to ask for Remix link to extract IDs
+st.sidebar.subheader('Step 3: Add Remix OD Layer Link ')
+title1 = st.sidebar.text_input('Remix Link:', 'Copy URL')
+
+st.sidebar.subheader('Step 3.1(Optional): Add Another Remix OD Layer Link ')
+title2 = st.sidebar.text_input('Remix 2nd Link:', 'Copy URL')
+
 
 # Read IDs in the link
 if title1 != 'Copy URL':
@@ -63,7 +65,7 @@ if uploaded_files != []:
           for i in uploaded_files:
                df=pd.read_csv(i,delimiter=delimit)
                if len(df.columns)==1:
-                    st.write('Make sure you have the right delimiter in Step 3')
+                    st.write('Make sure you have the right delimiter in Step 2')
                for t in ID_list:
                     if int(t) in df[from_].values:
                          number=int(t)
@@ -80,7 +82,7 @@ if uploaded_files != []:
                csv = convert_df(table)
 
                st.download_button(
-                    "Press to Download",
+                    "Press to Download CSV",
                     csv,
                     "OD_Selection_Table_1.csv",
                     "text/csv",
@@ -157,7 +159,7 @@ if title2 != 'Copy URL' and len(title2)>0:
           csv = convert_df(table2)
 
           st.download_button(
-               "Press to Download",
+               "Press to Download CSV",
                csv,
                "OD_Selection_Table_2.csv",
                "text/csv",
@@ -180,3 +182,4 @@ if title2 != 'Copy URL' and len(title2)>0:
                     number=int(t)
                     st.write("Total travel from ", from_2, " ", number, "is: ", 'No matching record')
           st.write("Sum: ",summary)
+
